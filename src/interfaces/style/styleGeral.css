@@ -1,0 +1,140 @@
+/*
+////////// ROOT ////////////
+////////// ROOT ////////////
+////////// ROOT ////////////
+*/
+.root {
+    -fx-background-color: #ffffff;
+}
+
+
+
+/*
+////////// PANEIS ////////////
+////////// PANEIS ////////////
+////////// PANEIS ////////////
+*/
+.pane-interno {
+    -fx-border-width: 3;
+    -fx-border-color: #535252;
+}
+.pane-externo {
+    -fx-border-width: 3;
+    -fx-border-color: #535252;
+    -fx-background-color: #737272;
+}
+
+
+
+/*
+////////// TEXT FIELDS ////////////
+////////// TEXT FIELDS ////////////
+////////// TEXT FIELDS ////////////
+*/
+.text-field_escolhido {
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-border-width: 2px;
+    -fx-border-color: #3f3f3f;
+    -fx-background-color: #ffffff;
+    -fx-background-insets: 2px;
+}
+.text-field_escolhido:focused {
+    -fx-effect: dropshadow(gaussian, rgba(33, 150, 243, 0.8), 8, 0.5, 0, 0);
+}
+.text-field_escolhido .text-field:focused {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+
+
+/*
+////////// BUTTON ////////////
+////////// BUTTON ////////////
+////////// BUTTON ////////////
+*/
+.button_escolhido {
+    -fx-font-size: 14;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-border-width: 2px;
+    -fx-border-color: #3f3f3f;
+    -fx-background-color: #e2e2e2;
+    -fx-background-insets: 2px;
+
+}
+.button_escolhido:hover {
+    -fx-background-color: #cacaca;
+}
+.button_escolhido:hover .text {
+    -fx-fill: #ff0000;
+}
+.button_escolhido:focused {
+    -fx-background-color: #b9b9b9;
+}
+.button_escolhido:focused .text {
+    -fx-fill: #5900ff;
+}
+
+.button_escolhido:pressed {
+    -fx-background-color: #00ff15;
+}
+.button_escolhido:pressed .text {
+    -fx-fill: #eeff00;
+}
+
+
+
+/*
+////////// TASK EXCLUIR ////////////
+////////// TASK EXCLUIR ////////////
+////////// TASK EXCLUIR ////////////
+*/
+.task-excluir{
+    -fx-font-size: 14;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-border-width: 2px;
+    -fx-border-color: #3f3f3f;
+    -fx-background-color: #e2e2e2;
+    -fx-background-insets: 2px;
+}
+
+.task-excluir:hover{
+    -fx-background-color: #ff0000;
+}
+
+
+/*
+////////// VBOX ////////////
+////////// VBOX ////////////
+////////// VBOX ////////////
+*/
+.vbox-escolhido {
+    -fx-border-width: 2;
+    -fx-border-color: #535252;
+    -fx-background-color: #737272;
+}
+
+
+
+/*
+////////// TASK ////////////
+////////// TASK ////////////
+////////// TASK ////////////
+*/
+.task-criacao {
+    -fx-font-size: 14;
+    -fx-border-width: 2px;
+    -fx-border-color: #868686;
+
+
+}
+.task-criacao .text {
+    -fx-fill: #000000;
+}
+.task-criacao:focused {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}

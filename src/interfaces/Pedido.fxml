@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="382.0" minWidth="787.0" prefHeight="523.0" prefWidth="882.0" style="-fx-background-color: e3e3e3;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ControllerPedido">
+   <children>
+      <Button layoutX="733.0" layoutY="455.0" mnemonicParsing="false" onAction="#salvarPedidoFunc" prefHeight="48.0" prefWidth="130.0" text="Salvar" wrapText="true">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+      <Button layoutX="19.0" layoutY="455.0" mnemonicParsing="false" onAction="#cancelarFunc" prefHeight="48.0" prefWidth="130.0" text="Cancelar" wrapText="true">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+      <Label alignment="CENTER" layoutY="7.0" prefHeight="20.0" prefWidth="701.0" text="Dados do pedido" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Label>
+      <Label layoutX="19.0" layoutY="44.0" prefHeight="20.0" prefWidth="64.0" text="Nome:">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="campoNome" layoutX="79.0" layoutY="44.0" prefHeight="25.0" prefWidth="342.0" />
+      <Label layoutX="437.0" layoutY="44.0" prefHeight="25.0" prefWidth="86.0" text="Telefone:">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="campoTelefone" alignment="CENTER" layoutX="518.0" layoutY="44.0" prefHeight="25.0" prefWidth="117.0" promptText="(48) 9 1234-1234" />
+      <Label layoutX="19.0" layoutY="86.0" prefHeight="20.0" prefWidth="166.0" text="Endereço da entrega:">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="campoCpf" layoutX="733.0" layoutY="44.0" prefHeight="25.0" prefWidth="130.0" />
+      <TextField fx:id="campoEndereco" layoutX="185.0" layoutY="86.0" prefHeight="25.0" prefWidth="496.0" />
+      <Label layoutX="685.0" layoutY="86.0" prefHeight="25.0" prefWidth="43.0" text="Data:">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="campoData" editable="false" layoutX="733.0" layoutY="86.0" prefHeight="25.0" prefWidth="130.0" />
+      <Label alignment="CENTER" layoutX="1.0" layoutY="151.0" prefHeight="61.0" prefWidth="882.0" text="Descrição do pedido">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="17.0" layoutY="128.0" prefHeight="20.0" prefWidth="64.0" text="Total:">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="campoTotal" layoutX="75.0" layoutY="128.0" prefHeight="25.0" prefWidth="86.0" text="R$: " />
+      <Label layoutX="186.0" layoutY="128.0" prefHeight="20.0" prefWidth="64.0" text="Pago:">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="campoPago" layoutX="247.0" layoutY="128.0" prefHeight="25.0" prefWidth="86.0" text="R$: " />
+      
+      <Label fx:id="textFaltaPagar" layoutX="354.0" layoutY="128.0" prefHeight="25.0" prefWidth="221.0" text="Falta pagar:">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="648.0" layoutY="44.0" prefHeight="25.0" prefWidth="86.0" text="CPF/CNPJ:">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="577.0" layoutY="128.0" prefHeight="20.0" prefWidth="64.0" text="Custos:">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="campoCustos" layoutX="648.0" layoutY="128.0" prefHeight="25.0" prefWidth="86.0" text="R$: " />
+      <CheckBox fx:id="botaoFinalizado" layoutX="758.0" layoutY="128.0" mnemonicParsing="false" text="Finalizado">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font></CheckBox>
+      <TextArea fx:id="campoDescricao" layoutX="21.0" layoutY="209.0" prefHeight="228.0" prefWidth="844.0" wrapText="true">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </TextArea>
+      <Button layoutX="377.0" layoutY="455.0" mnemonicParsing="false" onAction="#excluirPedidoFunc" prefHeight="48.0" prefWidth="130.0" text="Excluir Pedido" wrapText="true">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

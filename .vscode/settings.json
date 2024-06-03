@@ -1,0 +1,24 @@
+{
+    "java.project.referencedLibraries": {
+        "include": [
+            "lib/**/*.jar",
+            "s:\\java_gui\\javafx-sdk-21.0.2\\lib\\javafx.base.jar",
+            "s:\\java_gui\\javafx-sdk-21.0.2\\lib\\javafx.controls.jar",
+            "s:\\java_gui\\javafx-sdk-21.0.2\\lib\\javafx.fxml.jar",
+            "s:\\java_gui\\javafx-sdk-21.0.2\\lib\\javafx.graphics.jar",
+            "s:\\java_gui\\javafx-sdk-21.0.2\\lib\\javafx.media.jar",
+            "s:\\java_gui\\javafx-sdk-21.0.2\\lib\\javafx.swing.jar",
+            "s:\\java_gui\\javafx-sdk-21.0.2\\lib\\javafx.web.jar",
+            "s:\\java_gui\\javafx-sdk-21.0.2\\lib\\javafx-swt.jar",
+            "s:\\java_gui\\server\\postgresql-42.7.3.jar",
+            "s:\\java_gui\\server\\ojdbc11.jar",
+            "jxl.jar",
+            "s:\\java_gui\\server\\jxl.jar"
+        ],
+        "exclude": [
+            "s:\\java_gui\\javafx-sdk-17.0.10\\lib\\javafx-swt.jar"
+        ]
+    },
+    "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx2G -Xms100m -Xlog:disable",
+    "C_Cpp.errorSquiggles": "disabled"
+}

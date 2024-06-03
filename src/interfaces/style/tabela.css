@@ -1,0 +1,80 @@
+/* tamanho da barra de rolagem lateral */
+.table-view{
+    -fx-font-size: 14;
+    -fx-border-size:2;
+    -fx-border-color: #000000;
+    -fx-background-insets: 2px; 
+}
+.table-view:focused{
+    -fx-effect: dropshadow(gaussian, rgba(33, 150, 243, 0.8), 8, 0.5, 0, 0);
+}
+
+
+/* 1-linha */
+.table-row-cell:odd {
+    -fx-background-color: #ffffff;
+}
+
+/* 2-linha */
+.table-row-cell:even {
+    -fx-background-color: #cfcfcf;
+}
+
+/* mouse em cima */
+.table-row-cell:hover {
+    -fx-background-color: #818181;
+}
+.table-row-cell:hover .text {
+    -fx-fill: #ff0000;
+}
+
+/* clicando*/
+.table-row-cell:pressed {
+    -fx-background-color: #00ff15;
+}
+.table-row-cell:pressed .text {
+-fx-fill: #eeff00;
+}
+
+/* já foi clicado*/
+.table-row-cell:focused {
+    -fx-background-color: #b9b9b9;
+}
+.table-row-cell:focused .text {
+    -fx-fill: #ff0000;
+}
+
+
+/* babeçhalho */
+.column-header {
+    -fx-background-color: #e2e2e2;
+    -fx-border-width: 0 1 1 0;
+    -fx-border-color: #000000;
+}
+
+.column-header .label  {
+    -fx-text-fill: rgb(255, 0, 0);
+    -fx-alignment: CENTER;
+    -fx-font-size: 14;
+    -fx-padding: 5 0;
+}
+
+
+/* linhas da tabela */
+.table-column {
+    -fx-text-fill: #000000;
+    -fx-border-width: 0 1 1 0;
+    -fx-border-color: #000000;
+    -fx-font-size: 14;
+}
+
+
+#colunaTelefones,
+#colunaTempo{
+    -fx-alignment: CENTER;
+}
+
+#colunaFaltaPagar{
+    -fx-padding: 0 5;
+}
+

@@ -1,0 +1,75 @@
+
+
+fazer o texto da tabela mudar de acordo com o filtro
+
+na tabela dos pedidos mostar outras informaçoes como
+preço pago
+custos total
+??? mostar o id_do banco de dados do pedido na exibiçao ???
+
+
+talvez só mostar gerando um arquivo todos esses detalhes
+nas estatisticas do pedidos mostrados mostrar
+valor total e medio
+custos total e medio
+lucro total e medio
+??? talvez a data media de tempo do pedido a entrega
+media de pedidos do mes
+media do custo
+
+Quando criar o task restar as cores das entradas
+Mostrar confirmação de quando criado e finalizado
+
+
+
+
+
+mudar o layout/ cores e textos 
+
+- Fundo Principal: #F0F0F0 (Cinza Claro)
+- Cabeçalho/Títulos: #333333 (Cinza Escuro)
+- Texto Principal: #000000 (Preto)
+- Texto Secundário: #666666 (Cinza Médio)
+- Botões Primários: #4CAF50 (Verde)
+- Botões Secundários: #2196F3 (Azul)
+- Alertas/Erros: #F44336 (Vermelho)
+- Linhas da Tabela:
+  - Linha Clara: #FFFFFF (Branco)
+  - Linha Escura: #EEEEEE (Cinza Muito Claro)
+- Fundo dos Botões Laterais: #505050 (Cinza Escuro)
+
+
+
+
+
+
+taskweek 
+talvez colocar mais cores disponiveis
+revisar tudo
+
+
+
+
+
+
+
+
+talvez melhora a funçao de Data  public static List<Pedido> getPedidosOrdenados() usando a funçao encontrarPosicaoInsercao pra ordenar 
+talvez tirar um pouco dos filtros gerais e manipulaçoes de strings para ficar mais optimizado
+fazer o arquivo externo com as config de login do banco de dados
+fazer ele abrir sem o CMD
+limitar a quantidade de apps abertos simultaniamente
+trasfromar os arquivos java em .exe
+
+
+
+limpar o bd
+TRUNCATE TABLE pedido CASCADE;
+TRUNCATE TABLE cliente CASCADE;
+ALTER SEQUENCE pedido_id_pedido_seq RESTART WITH 1;
+ALTER SEQUENCE cliente_id_cliente_seq RESTART WITH 1;
+
+
+
+tem que obrigatóriamente fazer referencia a biblioteca original do javafx
+java --module-path "S:/java_gui/javafx-sdk-21.0.2/lib" --add-modules javafx.base,javafx.controls,javafx.fxml,javafx.graphics -jar JavaApplication4.jar
