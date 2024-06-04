@@ -31,10 +31,11 @@ import javafx.scene.Node;
 public class ControllerFinancas extends ControllerUtils {
     private static final Map<String, Integer> mapDay = new HashMap<>();
 
-    ObservableList<String> periodoOpcoes = FXCollections.observableArrayList("Ultimo 1 Dia", "Ultimos 7 Dias",
-            "Ultimos 30 Dias", "Ultimos 60 Dias", "Ultimos 90 Dias", "Todos os dias");
+    ObservableList<String> periodoOpcoes = FXCollections.observableArrayList("últimos 1 Dia", "últimos 7 Dias",
+            "últimos 30 Dias", "últimos 60 Dias", "últimos 90 Dias", "Todos os dias");
 
     private ObservableList<Pedido> listaPedidos = FXCollections.observableArrayList();
+    private String filtroText;
 
     @FXML
     private TableView<Pedido> tabelaPedidos;
@@ -98,11 +99,11 @@ public class ControllerFinancas extends ControllerUtils {
 
         periodoTempo.setItems(periodoOpcoes);
         periodoTempo.setValue(periodoOpcoes.getLast());
-        mapDay.put("Ultimo 1 Dia", 1);
-        mapDay.put("Ultimos 7 Dias", 7);
-        mapDay.put("Ultimos 30 Dias", 30);
-        mapDay.put("Ultimos 60 Dias", 60);
-        mapDay.put("Ultimos 90 Dias", 90);
+        mapDay.put("últimos 1 Dia", 1);
+        mapDay.put("últimos 7 Dias", 7);
+        mapDay.put("últimos 30 Dias", 30);
+        mapDay.put("últimos 60 Dias", 60);
+        mapDay.put("últimos 90 Dias", 90);
 
         setLimitCaracters(filtroNome, 20);
         setLimitCaracters(filtroCpf, 20);
@@ -113,6 +114,7 @@ public class ControllerFinancas extends ControllerUtils {
     private void setUpTabelaPedidos() {
         // lista de pedidos da tabela
         listaPedidos.setAll(InterfaceBancoDados.getUltimos_X_pedidos(50));
+        filtroText = "Histórico dos últimos pedidos";
         tabelaPedidos.setItems(listaPedidos);
 
         // seta os campos da tabela
@@ -164,10 +166,7 @@ public class ControllerFinancas extends ControllerUtils {
     }
 
     private void abrirPedido(Pedido pedido, MouseEvent event) {
-        // janela atual
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        // att a tabela quando volta pra essa janela
         currentStage.setOnShowing(e -> {
             filtroFunc(null);
         });
@@ -191,18 +190,25 @@ public class ControllerFinancas extends ControllerUtils {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     @FXML
     void filtroFunc(ActionEvent event) {
         int limite = 50;
-        listaPedidos.setAll(pesquisarDB(limite));
-
+        pesquisarDB(limite);
     }
 
-    private  List<Pedido> pesquisarDB(int limite) {
-        List<Pedido> listaPedidosBD = new ArrayList<>();
+    @FXML
+    void imprimirFunc(ActionEvent event) {
+        FinancaEstatisticas data = pesquisarDB(300);
+        data.gerarRelatorio();
+    }
+
+    private FinancaEstatisticas pesquisarDB(int limite) {
+        FinancaEstatisticas data;
+        List<Pedido> listaP = new ArrayList<>();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
         LocalDate dataInicio = filtroDataInicio.getValue();
         LocalDate dataFim = filtroDataFim.getValue();
         String tempo = periodoTempo.getValue();
@@ -212,52 +218,55 @@ public class ControllerFinancas extends ControllerUtils {
         if (dataInicio != null) {
             if (dataFim != null) {
                 if (dataFim.compareTo(dataInicio) >= 0) {
-                    listaPedidosBD = InterfaceBancoDados.getFiltroDatas(dataInicio, dataFim, limite);
-                    tituloTabela.setText("Histórico dos pedidos de " + dataInicio + " a " + dataFim);
+                    listaP = InterfaceBancoDados.getFiltroDatas(dataInicio, dataFim, limite);
+                    filtroText = "Histórico dos pedidos de " + dataInicio.format(formatter) + " a "
+                            + dataFim.format(formatter);
+                    data = new FinancaEstatisticas(listaP, filtroText);
                 } else {
-                    listaPedidosBD = InterfaceBancoDados.getFiltroDatas(dataFim, dataInicio, limite);
-                    tituloTabela.setText("Histórico dos pedidos de " + dataFim + " a " + dataInicio);
+                    listaP = InterfaceBancoDados.getFiltroDatas(dataFim, dataInicio, limite);
+                    filtroText = "Histórico dos pedidos de " + dataFim.format(formatter) + " a "
+                            + dataInicio.format(formatter);
+                    data = new FinancaEstatisticas(listaP, filtroText);
                 }
             } else {
-                listaPedidosBD = InterfaceBancoDados.getFiltroDatas(dataInicio, dataInicio.plusDays(90), limite);
-                tituloTabela.setText("Histórico dos pedidos de " + dataInicio + " a " + dataInicio.plusDays(90));
+                listaP = InterfaceBancoDados.getFiltroDatas(dataInicio, dataInicio.plusDays(90), limite);
+                filtroText = "Histórico dos pedidos de " + dataInicio.format(formatter) + " a "
+                        + dataInicio.plusDays(90).format(formatter);
+                data = new FinancaEstatisticas(listaP, filtroText);
             }
-            filtroDataFim.setValue(null);
-            filtroDataInicio.setValue(null);
         } else if (!tempo.equals("Todos os dias")) {
             LocalDate now = LocalDate.now();
-            listaPedidosBD = InterfaceBancoDados.getFiltroDatas(now.minusDays(mapDay.get(tempo)), now, limite);
-            tituloTabela.setText("Histórico dos pedidos dos " + tempo);
-            periodoTempo.setValue(periodoOpcoes.getLast());
+            listaP = InterfaceBancoDados.getFiltroDatas(now.minusDays(mapDay.get(tempo)), now, limite);
+            filtroText = "Histórico dos pedidos dos " + tempo;
+            data = new FinancaEstatisticas(listaP, filtroText);
         } else if (!nome.isEmpty()) {
-            listaPedidosBD = InterfaceBancoDados.getFiltroNome(nome, limite);
-            tituloTabela.setText("Histórico dos pedidos filtrado por nome: " + nome);
-            filtroNome.setText("");
+            listaP = InterfaceBancoDados.getFiltroNome(nome, limite);
+            filtroText = "Histórico dos pedidos filtrado por nome: " + nome;
+            data = new FinancaEstatisticas(listaP, filtroText);
         } else if (!cpf.isEmpty()) {
-            listaPedidosBD = InterfaceBancoDados.getFiltroCpf(cpf, limite);
-            tituloTabela.setText("Histórico dos pedidos filtrado por CPF/Cnpj: " + cpf);
-            filtroCpf.setText("");
+            listaP = InterfaceBancoDados.getFiltroCpf(cpf, limite);
+            filtroText = "Histórico dos pedidos filtrado por CPF/Cnpj: " + cpf;
+            data = new FinancaEstatisticas(listaP, filtroText);
         } else {
-            listaPedidosBD = InterfaceBancoDados.getUltimos_X_pedidos(limite);
-            tituloTabela.setText("Histórico dos ultimos pedidos");
+            listaP = InterfaceBancoDados.getUltimos_X_pedidos(limite);
+            filtroText = "Histórico dos últimos pedidos";
+            data = new FinancaEstatisticas(listaP, filtroText);
         }
-        showEstatisticas();
-        return listaPedidosBD;
-    }
 
-    @FXML
-    void imprimirFunc(ActionEvent event) {
-        FinancaEstatisticas data = new FinancaEstatisticas(pesquisarDB(300));
-        data.gerarRelatorio();
+        limparFiltroFunc(null);
+
+        listaPedidos.setAll(listaP);
+        tituloTabela.setText(filtroText);
+        showEstatisticas();
+        return data;
     }
 
     public void showEstatisticas() {
-        FinancaEstatisticas data = new FinancaEstatisticas(listaPedidos);
+        FinancaEstatisticas data = new FinancaEstatisticas(listaPedidos, filtroText);
         labelValorTotal.setText(String.format("%.2f", data.getPagoTotal()));
         labelCustosTotal.setText(String.format("%.2f", data.getCustosTotal()));
         labelLucroTotal.setText(String.format("%.2f", data.getLucroTotal()));
         labelQuantidade.setText(String.format("%d", data.getQtnPedidos()));
-
     }
 
     @FXML
@@ -277,7 +286,5 @@ public class ControllerFinancas extends ControllerUtils {
         String janelaName = "Menu";
         switchWindow(event, janela, janelaName);
     }
-
-
 
 }

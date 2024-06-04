@@ -1,6 +1,11 @@
 
 colocar o aspecto do filtro
 
+pdf estatisticas resumidas
+mostrar o filtro
+
+
+
 fazer o texto da tabela mudar de acordo com o filtro
 
 na tabela dos pedidos mostar outras informaçoes como

@@ -8,6 +8,7 @@ import jxl.write.WritableFont;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
 import jxl.write.WriteException;
+import jxl.write.Number;
 import jxl.write.biff.RowsExceededException;
 import java.io.File;
 import java.io.IOException;
@@ -15,6 +16,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class FinancaEstatisticas {
+    private String filtro;
     private List<Pedido> listaPedidos;
     private int qntPedidos;
     private double[] listTotalCustos = { 0 };
@@ -22,7 +24,8 @@ public class FinancaEstatisticas {
     private double[] listTotalPago = { 0 };
     private double totalPago;
 
-    public FinancaEstatisticas(List<Pedido> pedidosList) {
+    public FinancaEstatisticas(List<Pedido> pedidosList, String filtro) {
+        this.filtro = filtro;
         this.listaPedidos = pedidosList;
         qntPedidos = pedidosList.size();
 
@@ -35,6 +38,10 @@ public class FinancaEstatisticas {
                 .mapToDouble(Pedido::getValorPago).toArray();
         totalPago = DoubleStream.of(listTotalPago).sum();
 
+    }
+
+    public List<Pedido> getListPedidos() {
+        return listaPedidos;
     }
 
     public int getQtnPedidos() {
@@ -115,22 +122,57 @@ public class FinancaEstatisticas {
     }
 
     private void escreverResumo(WritableSheet sheet) throws RowsExceededException, WriteException {
-        sheet.addCell(new Label(0, 0, "Nome"));
-        sheet.addCell(new Label(1, 0, "Dia"));
-        sheet.addCell(new Label(2, 0, "Quantidade"));
 
-        // Adicionar dados
-        sheet.addCell(new Label(0, 1, "Item1"));
-        sheet.addCell(new Label(1, 1, "2023-01-01"));
-        sheet.addCell(new jxl.write.Number(2, 1, 10));
+        // formatar o titulo e escrever
+        sheet.mergeCells(0, 0, 5, 0);
+        sheet.setRowView(0, 20 * 20);
+        WritableFont font = new WritableFont(WritableFont.ARIAL, 14, WritableFont.BOLD);
+        WritableCellFormat cellFormat = new WritableCellFormat(font);
+        cellFormat.setAlignment(Alignment.CENTRE);
+        cellFormat.setVerticalAlignment(jxl.format.VerticalAlignment.CENTRE);
+        Label label = new Label(0, 0, filtro, cellFormat);
+        sheet.addCell(label);
 
-        sheet.addCell(new Label(0, 2, "Item2"));
-        sheet.addCell(new Label(1, 2, "2023-01-02"));
-        sheet.addCell(new jxl.write.Number(2, 2, 20));
+        // formatar as celulas
+        sheet.setColumnView(0, 20);
+        sheet.setColumnView(1, 15);
+        sheet.setRowView(2, 20 * 20);
+        sheet.setRowView(5, 20 * 20);
+        sheet.setRowView(8, 20 * 20);
 
-        sheet.addCell(new Label(0, 3, "Item3"));
-        sheet.addCell(new Label(1, 3, "2023-01-03"));
-        sheet.addCell(new jxl.write.Number(2, 3, 30));
+
+        sheet.addCell(new Label(0, 1, "Quantidade de pedidos"));
+        sheet.addCell(new Number(1, 1, qntPedidos));
+
+        // valores recebidos
+        sheet.mergeCells(0, 2, 1, 2);
+        sheet.addCell(new Label(0, 2, "Valores recebidos", cellFormat));
+
+        sheet.addCell(new Label(0, 3, "Total recebido:"));
+        sheet.addCell(new Label(1, 3, String.format("R$: %.2f", getPagoTotal())));
+
+        sheet.addCell(new Label(0, 4, "Media por pedido:"));
+        sheet.addCell(new Label(1, 4, String.format("R$: %.2f", getPagoMedio())));
+
+        // custos
+        sheet.mergeCells(0, 5, 1, 5);
+        sheet.addCell(new Label(0, 5, "Custos", cellFormat));
+
+        sheet.addCell(new Label(0, 6, "Custos total:"));
+        sheet.addCell(new Label(1, 6, String.format("R$: %.2f", getCustosTotal())));
+
+        sheet.addCell(new Label(0, 7, "Media por pedido:"));
+        sheet.addCell(new Label(1, 7, String.format("R$: %.2f", getCustosMedio())));
+
+        // lucro
+        sheet.mergeCells(0, 8, 1, 8);
+        sheet.addCell(new Label(0, 8, "Lucro", cellFormat));
+
+        sheet.addCell(new Label(0, 9, "Lucro total:"));
+        sheet.addCell(new Label(1, 9, String.format("R$: %.2f", getLucroTotal())));
+
+        sheet.addCell(new Label(0, 10, "Media por pedido:"));
+        sheet.addCell(new Label(1, 10, String.format("R$: %.2f", getLucroMedio())));
 
     }
 
@@ -146,7 +188,7 @@ public class FinancaEstatisticas {
 
         Label label = new Label(0, 0, "Dados dos Pedidos", cellFormat);
         sheet.addCell(label);
-        
+
         sheet.setColumnView(0, 15);
         sheet.setColumnView(1, 15);
         sheet.setColumnView(2, 15);
@@ -176,10 +218,10 @@ public class FinancaEstatisticas {
             Double valorPago = (p.getValorPago() != null) ? p.getValorPago() : 0.0;
             Double custos = (p.getCustos() != null) ? p.getCustos() : 0.0;
             double lucro = valorPago - custos;
-            sheet.addCell(new jxl.write.Number(6, i, precoPedido));
-            sheet.addCell(new jxl.write.Number(7, i, valorPago));
-            sheet.addCell(new jxl.write.Number(8, i, lucro));
-            sheet.addCell(new jxl.write.Number(9, i, custos));
+            sheet.addCell(new Number(6, i, precoPedido));
+            sheet.addCell(new Number(7, i, valorPago));
+            sheet.addCell(new Number(8, i, lucro));
+            sheet.addCell(new Number(9, i, custos));
             sheet.addCell(new Label(10, i, p.getDescricaoPedido()));
             i++;
         }

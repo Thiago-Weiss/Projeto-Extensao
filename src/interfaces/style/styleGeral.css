@@ -78,21 +78,12 @@
     -fx-fill: #ff0000;
 }
 
-.button_escolhido:focused {
-    -fx-background-color: #b9b9b9;
-}
-
-.button_escolhido:focused .text {
-    -fx-fill: #5900ff;
-}
 
 .button_escolhido:pressed {
-    -fx-background-color: #00ff15;
+    -fx-background-color: #929292;
 }
 
-.button_escolhido:pressed .text {
-    -fx-fill: #eeff00;
-}
+
 
 
 
