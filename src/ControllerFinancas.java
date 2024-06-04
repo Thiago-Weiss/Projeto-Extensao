@@ -2,10 +2,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.stream.DoubleStream;
-
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -135,13 +135,13 @@ public class ControllerFinancas extends ControllerUtils {
 
         colunaPago.setCellValueFactory(cellData -> {
             Double custos = cellData.getValue().getValorPago();
-            String text = "R$: "+ (custos != null ? custos : 0.0);
+            String text = "R$: " + (custos != null ? custos : 0.0);
             return new SimpleObjectProperty<>(text);
         });
 
         colunaCustos.setCellValueFactory(cellData -> {
             Double custos = cellData.getValue().getCustos();
-            String text = "R$: "+ (custos != null ? custos : 0.0);
+            String text = "R$: " + (custos != null ? custos : 0.0);
             return new SimpleObjectProperty<>(text);
         });
 
@@ -196,6 +196,13 @@ public class ControllerFinancas extends ControllerUtils {
 
     @FXML
     void filtroFunc(ActionEvent event) {
+        int limite = 50;
+        listaPedidos.setAll(pesquisarDB(limite));
+
+    }
+
+    private  List<Pedido> pesquisarDB(int limite) {
+        List<Pedido> listaPedidosBD = new ArrayList<>();
         LocalDate dataInicio = filtroDataInicio.getValue();
         LocalDate dataFim = filtroDataFim.getValue();
         String tempo = periodoTempo.getValue();
@@ -205,68 +212,51 @@ public class ControllerFinancas extends ControllerUtils {
         if (dataInicio != null) {
             if (dataFim != null) {
                 if (dataFim.compareTo(dataInicio) >= 0) {
-                    listaPedidos.setAll(InterfaceBancoDados.getFiltroDatas(dataInicio, dataFim));
+                    listaPedidosBD = InterfaceBancoDados.getFiltroDatas(dataInicio, dataFim, limite);
                     tituloTabela.setText("Histórico dos pedidos de " + dataInicio + " a " + dataFim);
                 } else {
-                    listaPedidos.setAll(InterfaceBancoDados.getFiltroDatas(dataFim, dataInicio));
+                    listaPedidosBD = InterfaceBancoDados.getFiltroDatas(dataFim, dataInicio, limite);
                     tituloTabela.setText("Histórico dos pedidos de " + dataFim + " a " + dataInicio);
                 }
             } else {
-                listaPedidos.setAll(InterfaceBancoDados.getFiltroDatas(dataInicio, dataInicio.plusDays(90)));
+                listaPedidosBD = InterfaceBancoDados.getFiltroDatas(dataInicio, dataInicio.plusDays(90), limite);
                 tituloTabela.setText("Histórico dos pedidos de " + dataInicio + " a " + dataInicio.plusDays(90));
             }
             filtroDataFim.setValue(null);
             filtroDataInicio.setValue(null);
         } else if (!tempo.equals("Todos os dias")) {
             LocalDate now = LocalDate.now();
-            listaPedidos.setAll(InterfaceBancoDados.getFiltroDatas(now.minusDays(mapDay.get(tempo)), now));
+            listaPedidosBD = InterfaceBancoDados.getFiltroDatas(now.minusDays(mapDay.get(tempo)), now, limite);
             tituloTabela.setText("Histórico dos pedidos dos " + tempo);
             periodoTempo.setValue(periodoOpcoes.getLast());
         } else if (!nome.isEmpty()) {
-            listaPedidos.setAll(InterfaceBancoDados.getFiltroNome(nome));
+            listaPedidosBD = InterfaceBancoDados.getFiltroNome(nome, limite);
             tituloTabela.setText("Histórico dos pedidos filtrado por nome: " + nome);
             filtroNome.setText("");
         } else if (!cpf.isEmpty()) {
-            listaPedidos.setAll(InterfaceBancoDados.getFiltroCpf(cpf));
+            listaPedidosBD = InterfaceBancoDados.getFiltroCpf(cpf, limite);
             tituloTabela.setText("Histórico dos pedidos filtrado por CPF/Cnpj: " + cpf);
             filtroCpf.setText("");
         } else {
-            listaPedidos.setAll(InterfaceBancoDados.getUltimos_X_pedidos(50));
+            listaPedidosBD = InterfaceBancoDados.getUltimos_X_pedidos(limite);
             tituloTabela.setText("Histórico dos ultimos pedidos");
         }
         showEstatisticas();
+        return listaPedidosBD;
+    }
+
+    @FXML
+    void imprimirFunc(ActionEvent event) {
+        FinancaEstatisticas data = new FinancaEstatisticas(pesquisarDB(300));
+        data.gerarRelatorio();
     }
 
     public void showEstatisticas() {
-        double[] listTotalCustos = listaPedidos.stream()
-                .filter(pedido -> pedido.getCustos() != null && pedido.getCustos() != 0)
-                .mapToDouble(Pedido::getCustos).toArray();
-        double[] listTotalPago = listaPedidos.stream()
-                .filter(pedido -> pedido.getValorPago() != null && pedido.getValorPago() != 0)
-                .mapToDouble(Pedido::getValorPago).toArray();
-
-        double totalCustos = DoubleStream.of(listTotalCustos).sum();
-        double totalPago = DoubleStream.of(listTotalPago).sum();
-
-        double totalLucro = totalPago - totalCustos;
-        int quantPedido = listaPedidos.size();
-
-        String textoValorTotal = "Total R$: " + String.format("%.2f", totalPago) + " / Médio R$: "
-                + String.format("%.2f", (totalPago / listTotalPago.length));
-        String textoCustosTotal = "Total R$: " + String.format("%.2f", totalCustos) + " / Médio R$: "
-                + String.format("%.2f", (totalCustos / listTotalCustos.length));
-        String textoLucroTotal = "Total R$: " + String.format("%.2f", totalLucro) + " / Médio R$: "
-                + String.format("%.2f", (totalLucro / quantPedido));
-
-        System.out.println(textoValorTotal);
-        System.out.println(textoCustosTotal);
-        System.out.println(textoLucroTotal);
-        System.out.println(quantPedido);
-
-        labelValorTotal.setText(textoValorTotal);
-        labelCustosTotal.setText(textoCustosTotal);
-        labelLucroTotal.setText(textoLucroTotal);
-        labelQuantidade.setText("" + quantPedido);
+        FinancaEstatisticas data = new FinancaEstatisticas(listaPedidos);
+        labelValorTotal.setText(String.format("%.2f", data.getPagoTotal()));
+        labelCustosTotal.setText(String.format("%.2f", data.getCustosTotal()));
+        labelLucroTotal.setText(String.format("%.2f", data.getLucroTotal()));
+        labelQuantidade.setText(String.format("%d", data.getQtnPedidos()));
 
     }
 
@@ -287,4 +277,7 @@ public class ControllerFinancas extends ControllerUtils {
         String janelaName = "Menu";
         switchWindow(event, janela, janelaName);
     }
+
+
+
 }

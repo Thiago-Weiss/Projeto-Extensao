@@ -1,9 +1,11 @@
 import jxl.Workbook;
 import jxl.write.Label;
+import jxl.write.WritableCellFormat;
+import jxl.write.WritableFont;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
 import jxl.write.WriteException;
-
+import jxl.format.Alignment;
 import java.io.File;
 import java.io.IOException;
 
@@ -11,19 +13,15 @@ public class ExcelWriter {
 
     public static void main(String[] args) throws WriteException {
         try {
-            // Criar um novo arquivo Excel
-            WritableWorkbook workbook = Workbook.createWorkbook(new File("arquivo_excel.xls"));
 
-            // Criar uma nova planilha
+            WritableWorkbook workbook = Workbook.createWorkbook(new File("arquivo_excel.xls"));
             WritableSheet sheet = workbook.createSheet("Planilha1", 0);
 
-            // Adicionar dados à planilha
             addData(sheet);
 
-            // Escrever e fechar o arquivo Excel
             workbook.write();
             workbook.close();
-            
+
             System.out.println("Arquivo Excel criado com sucesso.");
         } catch (IOException e) {
             e.printStackTrace();
@@ -32,10 +30,9 @@ public class ExcelWriter {
 
     private static void addData(WritableSheet sheet) {
         try {
-            // Adicionar cabeçalhos
-            sheet.addCell(new Label(0, 0, "Nome"));
-            sheet.addCell(new Label(1, 0, "Dia"));
-            sheet.addCell(new Label(2, 0, "Quantidade"));
+
+
+
 
             // Adicionar dados
             sheet.addCell(new Label(0, 1, "Item1"));

@@ -452,13 +452,14 @@ public class InterfaceBancoDados {
         return listaPedidos;
     }
 
-    public static List<Pedido> getFiltroNome(String nome) {
+    public static List<Pedido> getFiltroNome(String nome, int limite) {
         Connection conexao = conecao_BD();
         List<Pedido> listaPedidos = new ArrayList<>();
 
-        String sql = "SELECT p.*, c.* FROM pedido p JOIN cliente c ON p.id_cliente_chave = c.id_cliente WHERE LOWER(c.nome_cliente) ILIKE ?";
+        String sql = "SELECT p.*, c.* FROM pedido p JOIN cliente c ON p.id_cliente_chave = c.id_cliente WHERE LOWER(c.nome_cliente) ILIKE ? LIMIT ?";
         try (PreparedStatement statement = conexao.prepareStatement(sql)) {
             statement.setString(1, "%" + nome.toLowerCase().trim() + "%");
+            statement.setInt(2, limite);
 
             ResultSet resultSet = statement.executeQuery();
             listaPedidos = createPedido(resultSet);
@@ -473,14 +474,15 @@ public class InterfaceBancoDados {
         return listaPedidos;
     }
 
-    public static List<Pedido> getFiltroCpf(String cpf) {
+    public static List<Pedido> getFiltroCpf(String cpf, int limite) {
         Connection conexao = conecao_BD();
         List<Pedido> listaPedidos = new ArrayList<>();
 
-        String sql = "SELECT p.*, c.* FROM pedido p JOIN cliente c ON p.id_cliente_chave = c.id_cliente WHERE LOWER(REPLACE(c.cpf_cnpj, '.', '')) ILIKE ?";
+        String sql = "SELECT p.*, c.* FROM pedido p JOIN cliente c ON p.id_cliente_chave = c.id_cliente WHERE LOWER(REPLACE(c.cpf_cnpj, '.', '')) ILIKE ? LIMIT ?";
 
         try (PreparedStatement statement = conexao.prepareStatement(sql)) {
             statement.setString(1, "%" + cpf.toLowerCase().trim() + "%");
+            statement.setInt(2, limite);
 
             ResultSet resultSet = statement.executeQuery();
             listaPedidos = createPedido(resultSet);
@@ -495,14 +497,15 @@ public class InterfaceBancoDados {
         return listaPedidos;
     }
 
-    public static List<Pedido> getFiltroDatas(LocalDate inicio, LocalDate fim) {
+    public static List<Pedido> getFiltroDatas(LocalDate inicio, LocalDate fim, int limite) {
         Connection conexao = conecao_BD();
         List<Pedido> listaPedidos = new ArrayList<>();
 
-        String sql = "SELECT p.*, c.* FROM pedido p JOIN cliente c ON p.id_cliente_chave = c.id_cliente WHERE p.data_entrega BETWEEN ? AND ?";
+        String sql = "SELECT p.*, c.* FROM pedido p JOIN cliente c ON p.id_cliente_chave = c.id_cliente WHERE p.data_entrega BETWEEN ? AND ? LIMIT ?";
         try (PreparedStatement statement = conexao.prepareStatement(sql)) {
             statement.setDate(1, java.sql.Date.valueOf(inicio));
             statement.setDate(2, java.sql.Date.valueOf(fim));
+            statement.setInt(3, limite);
 
             ResultSet resultSet = statement.executeQuery();
             listaPedidos = createPedido(resultSet);

@@ -1,4 +1,5 @@
 
+colocar o aspecto do filtro
 
 fazer o texto da tabela mudar de acordo com o filtro
 
