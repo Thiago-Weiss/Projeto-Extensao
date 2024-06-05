@@ -11,7 +11,7 @@
 6. [Relato pessoal](#relato_pessoal)
 7. [ideias de melhorias](#melhorias?)
 8. [Contribuição pessoal](#conrtibuicao)
-9. [relato pessoal](#relato_pessoal)
+
 
 
 ## Descrição_projeto
@@ -77,7 +77,7 @@ Para instalar o aplicativo:
 4. instalar o app
     4.1 copie a pasta "App" para onde vc quiser que o aplicativo fique no seu computador
     4.2 para abrir o app é só clicar no iniciar.bat
-    4.3 se quiser colocar o icon ![alt text](image.png) do brigadeiro na pasta do programa
+    4.3 se quiser colocar o icon do brigadeiro na pasta do programa
         4.3 botão direito na pasta "App" -> propriedades -> personalizar -> alterar ícone -> selecione o ícone (ele está dentro da pasta "bibliotecas")
 
 
@@ -99,7 +99,6 @@ Para instalar o aplicativo:
         2.3.2 jxl
         2.3.3 bibliotec de conexao com o bd
 
-    2.4 feito
 
 
 
@@ -128,44 +127,5 @@ Planejar e organizar as atividades e prazos do projeto utilizando ferramentas co
 Modelar os requisitos funcionais e não funcionais do aplicativo.
 
 4- Desenvolvimento do Software:
-Desenvolvi tudo [aqui está o explicativo](#relato_pessoal)
+Desenvolvi tudo.
         
-
-
-## Relato_pessoal
-Para poder entender o meu relato eu primeiro tenho que explicar como foi o projeto de extensão e o que é
-Este projeto foi desenvolvido como parte de uma disciplina do semestre que representava a nota final. O grupo era composto por cinco integrantes, incluindo eu e mais quatro colegas e o projeto foi dividido em três grandes partes:
-
-Observação: Este foi meu primeiro contato com Java e meu primeiro uso real com banco de dados. A única bagagem útil que eu tinha era a Programação Orientada a Objetos (POO) em Python e a interface gráfica Tkinter do Python.
-
-1. Achar uma cliente e identificar uma problemática dela e defender a ideia do projeto em uma apresentação:
-    1 Semana - tarefa do grupo: achar uma possível cliente.
-        Fui o único que apresentou uma opção e ele foi aceita por todos
-    2 Semana - tarefa do grupo: elaborar questões para a cliente para mapearmos a problemática.
-        De 9 questões que elaboramos, 5 eram minhas
-    2 a 4 semana - tarefa do grupo: começar a responder às questões (10 questões ao total) da primeira defesa do projeto e preparar a primeira apresentação.
-        De 10 questões respondi 6 sozinhas e ajudei MUITO nas outras 4 questões e também comecei a organizar o Trello para essa apresentação
-        obs.: aqui um colega fez algo muito legal e foi elogiado pelo professor que foi juntar as respostas que estavam em texto e fazer um PowerPoint para apresentação
-        obs.: a apresentação foi de 15 min apresentada pelos meus colegas, eu só respondi às perguntas do professor 
-
-2. Planejamento Detalhado e Início do Desenvolvimento:
-    3 a 8 semana - tarefa do grupo: estudar o java, javafx, banco de dados... para podermos desenvolver o aplicativo.
-        Continuei a organizar o Trello e dividi o grupo em interface 2 colegas, banco de dados 2 colegas e integração eu, mas eu continuei a estudar o java e o javafx porque eu estava modelando interfaces e modelos UML (classes e fluxogramas) para apresentar para a cliente, aqui eu tive dois aprendizados, primeiro não mande coisas fora de horário comercial (aprendi isso porque mandei algo fora do horário e não foi agradável para a cliente) e o segundo se for apresentar algo vale mais a pena apresentar algo no Paint desenhando na hora do que um fluxograma bem feito (as imagens dos manuais de instruções são mais uteis que os textos deles) e foi nesse período que entendi o que significava "trabalho em grupo da faculdade", basicamente eu perguntava uma vez por semana como estava e só enrolavam e não desenvolviam nada, no Trello não completavam as tarefas deles...
-    8 a 9 semana - tarefa: fazer a segunda apresentação com o começo do desenvolvimento, as modelagens e o que mais tiver.
-        Apresentei sozinho porque ninguém tinha feito nada
-        
-3. Desenvolvimento e Entrega:
-    10 a 14 semana - tarefa: desenvolver o aplicativo.
-        Tentei ajudar os colegas para fazerem suas partes, mas não obtive sucesso, basicamente me enrolaram, enquanto isso continuei aprendendo mais e comecei a desenvolver
-        obs.: o colega do PowerPoint fez a base do banco de dados, que era basicamente duas tabelas meio "erradas" (tive que refazer uma parte) e sem começão com o java, então tive que começar a ver sobre banco de dados e como conectar com java
-    14 a 18 semana - tarefa: desenvolver o aplicativo.
-        Desisti dos colegas e desenvolvi tudo sozinho e acabei
-        obs.: foi um mês de pura irritação pessoal e pensamentos de dedurar para o professor, mas acabei não fazendo porque não tinha nada a ganhar e só a perder fazendo inimizades
-    18 a 20 semana - tarefa: entrega do app treinamento e defessa do projeto.
-        Estou nessa parte agora, estou fazendo a entrega do app para a cliente e ajudando na defessa
-
-
-Resumo do que eu aprendi:
-Conhecimento técnico: Aprendi uma base solida do java e da biblioteca javaFX, aprofundei o paradigma do POO e aprofundei o conhecimento geral sobre banco de dados, entre outros.
-Conhecimento geral: O conceito do que significa "Projeto em grupo da faculdade" ou "O trauma do projeto em grupo na faculdade" e também sobre como conversar com o cliente de uma forma mais "fácil".
-
