@@ -1,0 +1,20 @@
+Para instalar o aplicativo:
+
+1. Baixe a pasta "instalacao" do repositório do github:
+    link: https://github.com/Thiago-Weiss/Projeto-Extensao
+
+2. configurar o banco de dados
+    2.1 na pasta "install" instale o postgresql e na senha dele coloque: 2015
+    2.2 crie um novo banco de dados com o nome de: confeitariaBD
+    2.1 use o arquivo "banco_dados.sql" criar as estruturas de pasta do banco
+
+3. instale o java
+    3.1 na pasta de "install" instale o jdk-21
+
+4. instalar o app
+    4.1 copie a pasta "App" para onde vc quiser que o aplicativo fique no seu computador
+    4.2 para abrir o app é só clicar no iniciar.bat
+    4.3 se quiser colocar o icon ![alt text](image.png) do brigadeiro na pasta do progama
+        4.3 botão direito na pasta "App" -> propriedades -> personalizar -> alterar ícone -> selecione o icone (ele está dentro da pasta "bibliotecas")
+
+
