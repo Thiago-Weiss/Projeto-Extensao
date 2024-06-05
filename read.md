@@ -36,17 +36,18 @@ Produzir relatórios financeiros detalhados, incluindo receitas, custos e lucros
 3. Mostrar os pedidos em ordem de entrega (LISTA DE PEDIDOS) (feito) 
 4. Pesquisa sobre os pedidos abertos por CPF, NOME ou DATA ENTREGA (PESQUISA DOS PEDIDOS) (feito) 
 5. Estatísticas da empresa filtrada por tempo (dia, semana, mês...) (feito)
-    1 Receita (feito) 		
-   	2 Custo operacional (feito) 
+
+    	5.1 Receita (feito)
+      	5.2 Custo operacional (feito) 
     	5.3 Lucro (feito) 
     	5.4 Quantidade de pedidos (feito) 
     	5.5 Impressão das estatísticas (feito) 
     	5.6 Salvar os dados ou enviar por Email (não feito devido à complexidade e pq seria a única coisa do programa que precisaria de conexão com a internet) 
-6. Histórico dos pedidos (feito) 
-7. Pesquisa no histórico dos pedidos por CPF, NOME ou DATA ENTREGA (PESQUISA DOS PEDIDOS) (feito) 
-8. Task list da semana basicamente um espaço para poder anotar tarefas pequenas a serem feitas na semana (feito) 
-9. Notificação sobre os pedidos (também envolveria a internet e é simples ver os pedidos que estão chegando perto do prazo) 
-10. forma de imprimir um resumo do pedido (removido, pois a cliente não precisa e não tem impressora) 
+7. Histórico dos pedidos (feito) 
+8. Pesquisa no histórico dos pedidos por CPF, NOME ou DATA ENTREGA (PESQUISA DOS PEDIDOS) (feito) 
+9. Task list da semana basicamente um espaço para poder anotar tarefas pequenas a serem feitas na semana (feito) 
+10. Notificação sobre os pedidos (também envolveria a internet e é simples ver os pedidos que estão chegando perto do prazo) 
+11. forma de imprimir um resumo do pedido (removido, pois a cliente não precisa e não tem impressora) 
 
 
 ## imagens_projeto
