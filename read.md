@@ -20,10 +20,13 @@ O aplicativo foi desenvolvido por estudantes universitários de cursos relaciona
 	1- Centralização de Pedidos
 Consolidar todos os pedidos em um único lugar, independentemente da plataforma de venda (iFood, WhatsApp, etc.), 
 para facilitar o gerenciamento e a visualização.
-	2- Ordenação de Pedidos por Data de Entrega
-	3- organização de tarefas menores
+
+2- Ordenação de Pedidos por Data de Entrega
+
+3- organização de tarefas menores
 o aplicativo tem uma funcionalidade para anotar pequenas tarefas menores que devem ser feitas durante a semana como preparar embalagens, comprar ingredientes, fazer publicidade
-	4- Geração de Estatísticas e Relatórios
+
+4- Geração de Estatísticas e Relatórios
 Produzir relatórios financeiros detalhados, incluindo receitas, custos e lucros, proporcionando uma visão clara das finanças, também a possibilidade de ver o volume de vendas mensais
 
 
