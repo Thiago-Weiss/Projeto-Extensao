@@ -51,9 +51,9 @@ Produzir relatórios financeiros detalhados, incluindo receitas, custos e lucros
 
 
 ## imagens_projeto
-Menu onde mostra a tabela de pedidos em cima e em baixo a parte de anotações  ![alt text](image-1.png)
-Pedido aberto é a mesma janela da ciração de pedido  ![alt text](image-2.png)
-Financeiro é onde fica o histórico de pedidos e por onde é possível gerar o relatório em Excel ![alt text](image-3.png)
+Menu onde mostra a tabela de pedidos em cima e em baixo a parte de anotações  ![alt text](img/image-1.png)
+Pedido aberto é a mesma janela da ciração de pedido  ![alt text](img/image-2.png)
+Financeiro é onde fica o histórico de pedidos e por onde é possível gerar o relatório em Excel ![alt text](img/image-3.png)
 
 
 
