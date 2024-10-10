@@ -4,13 +4,13 @@
 
 ## Índice
 1. [Descrição do projeto](#Descrição_projeto)
-2. [requisitos funcionais](#Funcionalidades)
+2. [Requisitos Funcionais](#Funcionalidades)
 3. [Imagens](#imagens_projeto)
 4. [Instalação para uso](#Instalação-uso)
 5. [Instalação para modificação](#instalação-codigo-fonte)
 6. [Relato pessoal](#relato_pessoal)
 7. [ideias de melhorias](#melhorias?)
-8. [Contribuição pessoal](#conrtibuicao)
+8. [Contribuição pessoal](#Contribuição)
 
 
 
@@ -94,7 +94,7 @@ Para instalar o aplicativo:
 
     2.2 o código fonte é a pasta "src" coloque ele na sua IDE
 
-    2.3 instale as bilbiotecas e configure elas na sua IDE
+    2.3 instale as biblioteca e configure elas na sua IDE
         2.3.1 javaFX 21
         2.3.2 jxl
         2.3.3 bibliotec de conexao com o bd
@@ -114,7 +114,7 @@ São ideias que não vi necessidade de colocar por questões de não necessitar 
 
 
 
-## Conrtibuicao
+## Contribuição
 1- Contato com a Cliente:
 Entender o problema da cliente através de reuniões e conversas.
 Desenvolver a solução com a participação da cliente, mantendo-a informada sobre o progresso do projeto.
